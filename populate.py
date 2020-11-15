@@ -4,20 +4,21 @@ import datetime
 from faker import Faker
 
 faker = Faker()
-records = 100
+records = 500000
 database_name = 'TaskManager'
 
 def populate_users():
 	table_name = 'User'
 	rez = f'insert into {database_name}.{table_name} values\n'
+	start_index = 700105
 	for i in range(records):
-		rez += f"({i+1}, '{faker.first_name()}', '{faker.last_name()}', '{faker.email()}', '{faker.password()}'),\n"
-	rez += f"({i+2}, 'admin', 'admin', 'admin@mail.com', 'qwe123');"
+		rez += f"({i+start_index}, '{faker.first_name()}', '{faker.last_name()}', '{faker.email()}{i+start_index}', '{faker.password()}'),\n"
+	rez += f"({i+start_index+1}, 'admin', 'admin', 'admin{i+start_index+1}@mail.com', 'qwe123');"
 	
 	f = open(f'Populate_{table_name}.sql', 'w')
 	f.write(rez)
 
-	print(rez)
+	# print(rez)
 
 
 def populate_projects():
@@ -196,17 +197,17 @@ def populate_notifications():
 
 
 populate_users()
-populate_projects()
-populate_users_projects()
-populate_project_like()
+# populate_projects()
+# populate_users_projects()
+# populate_project_like()
 
-populate_tasks()
-populate_closed_tasks()
+# populate_tasks()
+# populate_closed_tasks()
 
-populate_comments()
-populate_stages()
-populate_messages()
-populate_times_logs()
-populate_agend()
-populate_links()
-populate_notifications()
+# populate_comments()
+# populate_stages()
+# populate_messages()
+# populate_times_logs()
+# populate_agend()
+# populate_links()
+# populate_notifications()

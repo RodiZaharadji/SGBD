@@ -5,17 +5,17 @@ use TaskManager;
 create table User
 (
 	id int primary key not null,
-    first_name varchar(399),
-    last_name varchar(399),
-    username varchar(399) unique not null,
-    password varchar(399) not null
+    first_name varchar(255),
+    last_name varchar(255),
+    username varchar(255) unique not null,
+    password varchar(255) not null
 );
 
 create table Project
 (
 	id int primary key not null,
 	created_by int not null,
-    description varchar(399),
+    description varchar(255),
     
     FOREIGN KEY (created_by) REFERENCES User(id)
 );
@@ -25,7 +25,7 @@ create table Users_Projects
 	id int primary key not null,
 	user_id int not null,
     project_id int not null,
-    role varchar(300),
+    role varchar(255),
     
     FOREIGN KEY (user_id) REFERENCES User(id),
     FOREIGN KEY (project_id) REFERENCES Project(id)
@@ -46,8 +46,8 @@ create table Task
 	id int primary key not null,
 	created_by int not null,
     created_time datetime,
-    title varchar(399),
-    description varchar(399),
+    title varchar(255),
+    description varchar(255),
     status boolean default false,
     parent int,
     project int,
@@ -72,7 +72,7 @@ create table Comments
 (
 	id int primary key not null,
 	author_id int not null,
-    content varchar(300),
+    content varchar(255),
     created_time datetime,
     task_id int not null,
     
@@ -84,10 +84,10 @@ create table Stage
 (
 	id int primary key not null,
 	author_id int not null,
-    title varchar(300),
-    description varchar(300),
+    title varchar(255),
+    description varchar(255),
     end_time datetime,
-    status varchar(300),
+    status varchar(255),
     project_id int not null,
     
     FOREIGN KEY (author_id) REFERENCES User(id),
@@ -99,8 +99,8 @@ create table Message
 	id int primary key not null,
 	author_id int not null,
     project_id int not null,
-    title varchar(300),
-    content varchar(300),
+    title varchar(255),
+    content varchar(255),
     created_date datetime,
     is_seen boolean default false,
 	
@@ -113,7 +113,7 @@ create table Time_log
 	id int primary key not null,
 	author_id int not null,
     project_id int not null,
-    description varchar(300),
+    description varchar(255),
     start_date datetime,
     end_date datetime,
     task_id int not null,
@@ -128,8 +128,8 @@ create table Agend
 	id int primary key not null,
 	author_id int not null,
     project_id int not null,
-    title varchar(300),
-    content varchar(300),
+    title varchar(255),
+    content varchar(255),
     created_date datetime,
     last_update_date datetime,
     last_update_user_id int,
@@ -145,9 +145,9 @@ create table Link
 	id int primary key not null,
 	author_id int not null,
     project_id int not null,
-    title varchar(300),
-    content varchar(300),
-    link varchar(300),
+    title varchar(255),
+    content varchar(255),
+    link varchar(255),
     created_date datetime,
 	
     FOREIGN KEY (author_id) REFERENCES User(id),
@@ -159,8 +159,8 @@ create table Notification
 	id int primary key not null,
 	user_id int not null,
     task_id int,
-    title varchar(300),
-    content varchar(300),
+    title varchar(255),
+    content varchar(255),
     created_date datetime,
     is_seen boolean default false,
 	
